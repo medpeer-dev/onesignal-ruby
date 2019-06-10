@@ -48,7 +48,6 @@ describe Notification do
         'delayed_option' => delivery.delayed_option.as_json,
         'delivery_time_of_day' => delivery.delivery_time_of_day.as_json,
         'ttl' => delivery.ttl.as_json,
-        'ttl' => delivery.ttl.as_json,
         'priority' => delivery.priority.as_json,
         'included_segments' => segments.as_json,
         'excluded_segments' => segments.as_json,
