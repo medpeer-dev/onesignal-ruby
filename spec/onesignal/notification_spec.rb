@@ -25,6 +25,7 @@ describe Notification do
        Filter.country.equals('IT')]
     end
     let(:sounds) { build :sounds }
+    let(:delivery) { build :delivery }
     let(:targets) { IncludedTargets.new include_email_tokens: 'test', include_external_user_ids: 'test' }
 
     subject do
@@ -33,7 +34,7 @@ describe Notification do
             headings: headings,
             included_segments: segments,
             excluded_segments: segments,
-            send_after: time,
+            delivery: delivery,
             filters: filters,
             sounds: sounds,
             included_targets: targets
@@ -43,7 +44,12 @@ describe Notification do
       expect(subject.as_json).to eq(
         'contents' => contents.as_json,
         'headings' => headings.as_json,
-        'send_after' => time.to_s,
+        'send_after' => delivery.send_after.as_json,
+        'delayed_option' => delivery.delayed_option.as_json,
+        'delivery_time_of_day' => delivery.delivery_time_of_day.as_json,
+        'ttl' => delivery.ttl.as_json,
+        'ttl' => delivery.ttl.as_json,
+        'priority' => delivery.priority.as_json,
         'included_segments' => segments.as_json,
         'excluded_segments' => segments.as_json,
         'data' => subject.attachments.data.as_json,
