@@ -19,7 +19,6 @@ FactoryBot.define do
     attachments { build :attachments }
     included_segments { [build(:segment), build(:segment)] }
     excluded_segments { [build(:segment), build(:segment)] }
-    send_after { Time.now }
 
     initialize_with do
       new(attributes)
