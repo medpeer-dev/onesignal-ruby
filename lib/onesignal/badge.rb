@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 module OneSignal
-  class Badge
+  module IOSBadgeType
     NONE = 'None'
     SET_TO = 'SetTo'
     INCREASE = 'Increase'
+  end
 
+  class Badge
     attr_reader :ios_badgeType, :ios_badgeCount
 
     def initialize ios_badgeType: nil, ios_badgeCount: nil
