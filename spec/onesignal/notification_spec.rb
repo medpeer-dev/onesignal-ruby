@@ -26,6 +26,8 @@ describe Notification do
     end
     let(:sounds) { build :sounds }
     let(:delivery) { build :delivery }
+    let(:grouping) { build :grouping }
+    let(:badge) { build :badge }
     let(:targets) { IncludedTargets.new include_email_tokens: 'test', include_external_user_ids: 'test' }
 
     subject do
@@ -35,6 +37,8 @@ describe Notification do
             included_segments: segments,
             excluded_segments: segments,
             delivery: delivery,
+            grouping: grouping,
+            badge: badge,
             filters: filters,
             sounds: sounds,
             included_targets: targets
@@ -49,6 +53,10 @@ describe Notification do
         'delivery_time_of_day' => delivery.delivery_time_of_day.as_json,
         'ttl' => delivery.ttl.as_json,
         'priority' => delivery.priority.as_json,
+        'android_group' => grouping.android_group.as_json,
+        'android_group_message' => grouping.android_group_message.as_json,
+        'ios_badgeType' => badge.ios_badgeType.as_json,
+        'ios_badgeCount' => badge.ios_badgeCount.as_json,
         'included_segments' => segments.as_json,
         'excluded_segments' => segments.as_json,
         'data' => subject.attachments.data.as_json,
