@@ -2,9 +2,11 @@
 
 module OneSignal
   class Badge
-    NONE = 'None'
-    SET_TO = 'SetTo'
-    INCREASE = 'Increase'
+    class IOSBadgeType
+      NONE = 'None'
+      SET_TO = 'SetTo'
+      INCREASE = 'Increase'
+    end
 
     attr_reader :ios_badgeType, :ios_badgeCount
 
