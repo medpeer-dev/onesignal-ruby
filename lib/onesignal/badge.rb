@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
-module OneSignal
-  module IOSBadgeType
-    NONE = 'None'
-    SET_TO = 'SetTo'
-    INCREASE = 'Increase'
-  end
+require 'onesignal/badge/ios_badge_type'
 
+module OneSignal
   class Badge
     attr_reader :ios_badgeType, :ios_badgeCount
 
