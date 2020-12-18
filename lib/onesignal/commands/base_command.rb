@@ -12,7 +12,13 @@ module OneSignal
       end
 
       def client
-        @client ||= OneSignal::Client.new(config.app_id, config.api_key, config.api_url)
+        @client ||= OneSignal::Client.new(
+          config.app_id,
+          config.api_key,
+          config.api_url,
+          config.open_timeout,
+          config.read_timeout
+        )
       end
 
       def config
