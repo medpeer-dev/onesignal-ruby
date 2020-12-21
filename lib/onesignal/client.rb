@@ -6,7 +6,7 @@ module OneSignal
   class Client
     class ApiError < RuntimeError; end
 
-    def initialize app_id, api_key, api_url
+    def initialize app_id, api_key, api_url, open_timeout, read_timeout
       @app_id = app_id
       @api_key = api_key
       @api_url = api_url
@@ -16,6 +16,8 @@ module OneSignal
         #   logger.filter(/(Basic )(\w+)/, '\1[REMOVED]')
         # end
         faraday.adapter Faraday.default_adapter
+        faraday.options[:open_timeout] = open_timeout
+        faraday.options[:timeout] = read_timeout
       end
     end
 

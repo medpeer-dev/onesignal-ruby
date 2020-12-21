@@ -45,6 +45,8 @@ OneSignal.configure do |config|
   config.api_url = 'http://my_api_url'
   config.active = false
   config.logger = Logger.new # Any Logger compliant implementation
+  config.open_timeout = 1
+  config.read_timeout = 1
 end
 ```
 ## Usage
