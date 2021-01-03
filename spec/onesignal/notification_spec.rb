@@ -28,6 +28,7 @@ describe Notification do
     let(:delivery) { build :delivery }
     let(:grouping) { build :grouping }
     let(:badge) { build :badge }
+    let(:appearance_additionals) { build :appearance_additionals }
     let(:targets) { IncludedTargets.new include_email_tokens: 'test', include_external_user_ids: 'test' }
 
     subject do
@@ -41,6 +42,7 @@ describe Notification do
             badge: badge,
             filters: filters,
             sounds: sounds,
+            appearance_additionals: appearance_additionals,
             included_targets: targets
     end
 
@@ -71,7 +73,8 @@ describe Notification do
         'adm_sound'     => sounds.amazon.as_json,
         'wp_wns_sound'  => sounds.windows.as_json,
         'include_email_tokens' => targets.include_email_tokens,
-        'include_external_user_ids' => targets.include_external_user_ids
+        'include_external_user_ids' => targets.include_external_user_ids,
+        'android_channel_id' => appearance_additionals.android_channel_id
       )
     end
   end
