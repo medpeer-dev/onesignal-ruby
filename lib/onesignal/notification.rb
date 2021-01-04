@@ -6,7 +6,8 @@ require 'onesignal/notification/headings'
 module OneSignal
   class Notification
     attr_reader :contents, :headings, :template_id, :included_segments, :excluded_segments,
-                :included_targets, :delivery, :attachments, :sounds, :grouping, :badge
+                :included_targets, :delivery, :attachments, :sounds, :grouping, :badge,
+                :appearance_additionals
 
     def initialize **params
       unless params.include?(:contents) || params.include?(:template_id)
@@ -25,17 +26,22 @@ module OneSignal
       @sounds            = params[:sounds]
       @grouping          = params[:grouping]
       @badge             = params[:badge]
+      @appearance_additionals = params[:appearance_additionals]
     end
 
     def as_json options = {}
       super(options)
-        .except('attachments', 'sounds', 'included_targets', 'delivery', 'grouping', 'badge')
+        .except(
+          'attachments', 'sounds', 'included_targets', 'delivery', 'grouping', 'badge',
+          'appearance_additionals'
+        )
         .merge(@attachments&.as_json(options) || {})
         .merge(@sounds&.as_json(options) || {})
         .merge(@delivery&.as_json(options) || {})
         .merge(@grouping&.as_json(options) || {})
         .merge(@badge&.as_json(options) || {})
         .merge(@included_targets&.as_json(options) || {})
+        .merge(@appearance_additionals&.as_json(options) || {})
         .select { |_k, v| v.present? }
     end
   end
